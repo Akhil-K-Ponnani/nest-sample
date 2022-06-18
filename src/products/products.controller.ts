@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { ProductsService } from "./products.service";
 
 @Controller('products')
@@ -11,7 +11,7 @@ export class ProductsController {
         if (name && description && price)
             return this.productsService.addProduct({ name, description, price })
         else
-            throw new NotFoundException('Product details not found.')
+            return { message: 'Product details not found.' }
     }
 
     @Get()
@@ -24,7 +24,7 @@ export class ProductsController {
         if (productId)
             return this.productsService.getProduct(productId)
         else
-            throw new NotFoundException('Product id not found.')
+            return { message: 'Product id not found.' }
     }
 
     @Put(':id')
@@ -32,7 +32,7 @@ export class ProductsController {
         if (productId && name && description && price)
             return this.productsService.updateProduct(productId, { name, description, price })
         else
-            throw new NotFoundException('Product details not found.')
+            return { message: 'Product details not found.' }
     }
 
     @Delete(':id')
@@ -40,6 +40,6 @@ export class ProductsController {
         if (productId)
             return this.productsService.deleteProduct(productId)
         else
-            throw new NotFoundException('Product id not found.')
+            return { message: 'Product id not found.' }
     }
 }
