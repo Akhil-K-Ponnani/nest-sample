@@ -1,4 +1,4 @@
- import { Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Product } from "./product.model";
@@ -10,10 +10,10 @@ export class ProductsService {
 
     addProduct(productData: any): {} {
         return new Promise(async (resolve, reject) => {
-                let product = new this.productModel({ name: productData.name, description: productData.description, price: productData.price })
-                product.save().then((product) => {
-                    resolve(product)
-                })
+            let product = new this.productModel({ name: productData.name, description: productData.description, price: productData.price })
+            product.save().then((product: any) => {
+                resolve(product)
+            })
         })
     }
 
@@ -33,7 +33,7 @@ export class ProductsService {
 
     updateProduct(productId: string, productData: any): {} {
         return new Promise((resolve, reject) => {
-            this.productModel.findByIdAndUpdate(productId, { name: productData.name, description: productData.description, price: productData.price }, { new: true }).then((product) => {
+            this.productModel.findByIdAndUpdate(productId, { name: productData.name, description: productData.description, price: productData.price }, { new: true }).then((product: any) => {
                 resolve(product)
             })
         })
@@ -41,7 +41,7 @@ export class ProductsService {
 
     deleteProduct(productId: string): {} {
         return new Promise((resolve, reject) => {
-            this.productModel.findByIdAndRemove(productId).then((product) => {
+            this.productModel.findByIdAndRemove(productId).then((product: any) => {
                 resolve(product)
             })
         })
